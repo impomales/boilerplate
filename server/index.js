@@ -4,9 +4,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const app = express();
 
-// load environment variables.
-require("dotenv").config();
-
 // logging middleware.
 app.use(morgan("dev"));
 
@@ -31,8 +28,4 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json(err.message || "Internal Server Error.");
 });
 
-const port = process.env.PORT || 8080;
-
-app.listen(port, () => {
-  console.log(`app is listening on port ${port}.`);
-});
+module.exports = app;

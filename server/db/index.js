@@ -1,8 +1,10 @@
 const Sequelize = require("sequelize");
 
-const port = process.env.PORT || 8080;
-const dbName = process.env.DATABASE_NAME || "boilerdb";
+const DATABASE_URL =
+  process.env.DATABASE_URL || `postgres://localhost:5432/boilerdb`;
 
-const db = new Sequelize(`postgres://localhost:${port}/${dbName}`, {
+const db = new Sequelize(DATABASE_URL, {
   logging: false
 });
+
+module.exports = db;
