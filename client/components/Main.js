@@ -8,11 +8,11 @@ const Main = () => (
   </div>
 );
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state /*, ownProps*/) => {
   return {};
 };
 
-const mapDispatchToProps = (state, ownProps) => {
+const mapDispatchToProps = (state /*, ownProps*/) => {
   return {};
 };
 

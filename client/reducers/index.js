@@ -1,3 +1,5 @@
+// use to combine multiple reducers.
+
 // import { combineReducers } from 'redux';
 
 // const reducer = combineReducers({ /* imported reducers here */});
