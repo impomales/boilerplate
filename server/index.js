@@ -2,7 +2,27 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const session = require("express-session");
+const passport = require("./auth/passport");
 const app = express();
+const { db, User } = require("./db/models");
+
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const dbStore = new SequelizeStore({ db });
+
+// session middleware.
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "a really insecure secret",
+    store: dbStore,
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
+// passport initialization.
+app.use(passport.initialize());
+app.use(passport.session());
 
 // logging middleware.
 app.use(morgan("dev"));
@@ -15,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public")));
 
 // route middleware.
+app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
 
 app.get("*", (req, res, next) => {
