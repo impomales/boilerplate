@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("./auth/passport");
 const app = express();
-const { db, User } = require("./db/models");
+const { db } = require("./db/models");
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const dbStore = new SequelizeStore({ db });

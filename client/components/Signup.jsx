@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { signup } from "../reducers";
 
-export default class Signup extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = { email: "", password: "" };
@@ -15,11 +16,7 @@ export default class Signup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios
-      .post("/auth/signup", this.state)
-      .then(res => res.data)
-      .then(user => console.log(user))
-      .catch(console.error);
+    this.props.signup(this.state);
   }
 
   render() {
@@ -47,3 +44,13 @@ export default class Signup extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    signup: signUpInfo => {
+      dispatch(signup(signUpInfo, ownProps.history));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Signup);
