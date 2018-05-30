@@ -7,6 +7,16 @@ const setUser = user => ({
   user
 });
 
+export const fetchUser = () => dispatch => {
+  axios
+    .get("/auth/me")
+    .then(res => res.data)
+    .then(user => {
+      if (user.email) dispatch(setUser(user));
+    })
+    .catch(console.error);
+};
+
 export const signup = (signupInfo, history) => dispatch => {
   axios
     .post("/auth/signup", signupInfo)
@@ -21,6 +31,17 @@ export const signup = (signupInfo, history) => dispatch => {
 export const login = (loginInfo, history) => dispatch => {
   axios
     .post("/auth/login", loginInfo)
+    .then(res => res.data)
+    .then(user => {
+      dispatch(setUser(user));
+      history.push("/");
+    })
+    .catch(console.error);
+};
+
+export const loginGoogle = history => dispatch => {
+  axios
+    .get("/auth/google")
     .then(res => res.data)
     .then(user => {
       dispatch(setUser(user));

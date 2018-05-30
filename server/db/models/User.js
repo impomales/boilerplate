@@ -6,6 +6,12 @@ const _ = require("lodash");
 const User = db.define(
   "user",
   {
+    googleId: {
+      type: Sequelize.STRING
+    },
+    name: {
+      type: Sequelize.STRING
+    },
     email: {
       type: Sequelize.STRING,
       unique: true,

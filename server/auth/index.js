@@ -1,9 +1,20 @@
 const router = require("express").Router();
 const { User } = require("../db/models");
+const passport = require("./passport");
 
 router.get("/me", (req, res, next) => {
   res.json(req.user);
 });
+
+router.get("/google", passport.authenticate("google", { scope: "email" }));
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/",
+    failureRedirect: "/login"
+  })
+);
 
 router.post("/login", (req, res, next) => {
   console.log(req.body);
