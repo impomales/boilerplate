@@ -38,7 +38,7 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <button type="submit">Sign up</button>
+          <button type="submit">Log in</button>
         </form>
       </div>
     );
