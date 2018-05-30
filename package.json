@@ -1,10 +1,13 @@
 {
   "name": "boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "boilerplate for full stack javascript web apps",
+  "repository": {
+    "url": "https://github.com/impomales/boilerplate.git"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --recursive ./tests --require babel-register",
     "webpack": "webpack -w",
     "start": "node index",
     "start:dev": "webpack -w & nodemon index"
@@ -16,8 +19,14 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "mocha": "^5.2.0",
     "style-loader": "^0.21.0",
+    "supertest": "^3.1.0",
     "webpack": "^4.10.1",
     "webpack-cli": "^2.1.4"
   },
